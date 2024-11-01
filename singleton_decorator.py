@@ -3,14 +3,14 @@ from typing import Any
 
 class SingletonDecorator:
     
-    def __init__(self, klass):
-        self.klass = klass
+    def __init__(self, cls):
+        self.cls = cls
         self.instance = None
         
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         if self.instance is None:
-            self.instance = self.klass(*args, **kwds)
+            self.instance = self.cls(*args, **kwds)
         return self.instance
     
     def __getattr__(self, name: str) -> Any:
-        return getattr(self.klass, name)
+        return getattr(self.cls, name)
